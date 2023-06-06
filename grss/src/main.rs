@@ -20,7 +20,7 @@ fn main() -> Result<()> {
     println!("{:?}, {:?}", args.pattern, args.path);
 
     let file = File::open(&args.path)
-        .with_context(|| format!("Could not read file '{}'", args.path.display()))?;
+        .with_context(|| format!("could not read file '{}'", args.path.display()))?;
     let reader = BufReader::new(file);
 
     grss::find_matches(reader, &args.pattern, &mut std::io::stdout());
