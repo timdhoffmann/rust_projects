@@ -1,7 +1,7 @@
 use anyhow::{Context, Result};
 use std::{
     fs::File,
-    io::{BufRead, BufReader},
+    io::{BufReader},
 };
 
 use clap::Parser;
