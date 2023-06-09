@@ -1,4 +1,6 @@
-use anyhow::{Context, Result};
+#![allow(unused_must_use)]
+
+use anyhow::{anyhow, Context, Result};
 use std::{
     fs::File,
     io::{BufReader},
@@ -17,7 +19,9 @@ struct Cli {
 
 fn main() -> Result<()> {
     let args = Cli::parse();
-    println!("{:?}, {:?}", args.pattern, args.path);
+    if String::is_empty(&args.pattern) {
+        return Err(anyhow!("Search pattern must not be empty."))
+    }
 
     let file = File::open(&args.path)
         .with_context(|| format!("could not read file '{}'", args.path.display()))?;
@@ -28,6 +32,7 @@ fn main() -> Result<()> {
     Ok(())
 }
 
+// TODO: Consider moving test to function declaration.
 #[test]
 fn test_find_matches() {
     let content = "Line 1\nLine 2\nLine 3\n";
