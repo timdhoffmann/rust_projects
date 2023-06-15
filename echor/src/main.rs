@@ -13,4 +13,11 @@ struct Args {
 fn main() {
     let args = Args::parse();
     println!("{:#?}", args);
+
+    let output = if args.omit_newline {
+        args.text
+    } else {
+        args.text + "\n"
+    };
+    print!("{}", output)
 }
