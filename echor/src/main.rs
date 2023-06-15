@@ -1,3 +1,16 @@
+use clap::Parser;
+
+#[derive(Parser, Debug)]
+// Read values from `Cargo.toml`
+#[command(author, version, about, long_about = None)]
+struct Args {
+    text: String,
+
+    /// Don't add a newline character, if provided.
+    #[arg(short = 'n', long)]
+    omit_newline: bool
+}
 fn main() {
-    println!("{:#?}", std::env::args());
+    let args = Args::parse();
+    println!("{:#?}", args);
 }
