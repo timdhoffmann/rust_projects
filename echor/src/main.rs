@@ -6,18 +6,14 @@ use clap::Parser;
 struct Args {
     text: String,
 
-    /// Don't add a newline character, if provided.
+    /// Don't append a newline character.
     #[arg(short = 'n', long)]
     omit_newline: bool
 }
 fn main() {
     let args = Args::parse();
-    println!("{:#?}", args);
 
-    let output = if args.omit_newline {
-        args.text
-    } else {
-        args.text + "\n"
-    };
+    let ending = if args.omit_newline {""} else {"\n"};
+    let output = args.text + ending;
     print!("{}", output)
 }
